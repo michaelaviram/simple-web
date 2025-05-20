@@ -1,13 +1,21 @@
 deployment:
   name: "simple-web"
-  replicas: "1"
+  replicas: 1
   image: "acrinterview.azurecr.io/simple-web"
   tag: "latest"
-  containerPort: "80"
+  containerPort: 80
 
 service:
-  name: "simple-web-deployment"
-  type: "NodePort"
-  port: "80"
-  targetPort: "80"
+  name: "simple-web-service"
+  type: "ClusterIP"
+  port: 80
+  targetPort: 80
+
+ingress:
+  name: "simple-web-ingress"
+  path: "/michael"
+  pathType: "Prefix"
+  className: "nginx"
+  port: 80
+
 
