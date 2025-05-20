@@ -1,0 +1,13 @@
+deployment:
+  name: "simple-web"
+  replicas: "1"
+  image: "acrinterview.azurecr.io/simple-web"
+  tag: "latest"
+  containerPort: "80"
+
+service:
+  name: "simple-web-deployment"
+  type: "NodePort"
+  port: "80"
+  targetPort: "80"
+
