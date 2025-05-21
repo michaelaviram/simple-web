@@ -11,6 +11,7 @@ pipeline {
         NAMESPACE = 'michael'
         HELM_CHART = 'simple-web'
         HELM_CHART_PATH = 'simple-web-chart/'
+    }
 
     options {
         skipDefaultCheckout(true)
