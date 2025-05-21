@@ -28,24 +28,15 @@ pipeline {
             }
        }
 
-       stage('Connect to Cluster') {
-           steps {
-               if (1 == 2) {
-                   sh 'az login -i'
-               sh 'az aks get-credentials -n ${AKS_NAME} -g ${RESOURCE_GROUP}'
-               sh 'export KUBECONFIG=~/.kube/config'
-               sh 'kubelogin convert-kubeconfig -l msi'
-           }
-        }
-       }
-
        stage('Chart Action') {
            steps {
+               script {
                if (params.OPTIONS == 'deploy') {
                     sh 'helm install simple-web-chart simple-web-chart/ -n michael'
                } else if (params.OPTIONS == 'destroy') {
                    sh 'helm uninstall simple-web-chart'
                }
+            }
            }
 
        }
