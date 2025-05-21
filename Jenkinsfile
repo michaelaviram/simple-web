@@ -18,6 +18,14 @@ pipeline {
             }
        }
 
+       stage('Connect to Cluster') {
+           teps {
+               sh 'az aks get-credentials -n devops-interview-aks -g  devops-interview-rg'
+               sh 'export KUBECONFIG=~/.kube/config'
+               sh 'kubelogin convert-kubeconfig -l msi'
+           }
+       }
+
        stage('Deploy Chart') {
            steps {
                sh 'helm install simple-web-chart simple-web-chart/ -n michael'
