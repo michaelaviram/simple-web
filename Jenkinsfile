@@ -4,6 +4,7 @@ pipeline {
     environment {
         AKS_NAME = 'devops-interview-aks'
         RESOURCE_GROUP = 'devops-interview-rg'
+    }
 
     options {
         skipDefaultCheckout(true)
