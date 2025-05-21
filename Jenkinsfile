@@ -36,7 +36,7 @@ pipeline {
                expression { params.OPTIONS == 'Deploy' }
            }
            steps {
-               sh "Checking if Release exits..."
+               echo "Checking if Release exits..."
                sh """
                  if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
                     echo "Release found. Upgrading..."
