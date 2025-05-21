@@ -24,7 +24,7 @@ ingress:
 
 autoscaler:
   name: "simple-web-autoscaler"
-  minReplicaCount: 0
+  minReplicaCount: 1
   maxReplicaCount: 10
   cpu:
     metricType: "AverageValue"
