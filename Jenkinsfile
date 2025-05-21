@@ -56,11 +56,11 @@ pipeline {
                echo "Checking if Release exits..."
                sh """
                  if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
-                    echo "Release found. Upgrading..."
+                    echo "Release already exits."
                  else
                     echo "Release not found. Installing..."
+                    helm install ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}
                  fi
-                 helm upgrade --install ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}
                  """
                }
             }
