@@ -35,6 +35,7 @@ pipeline {
                sh 'export KUBECONFIG=~/.kube/config'
                sh 'kubelogin convert-kubeconfig -l msi'
            }
+        }
        }
 
        stage('Chart Action') {
