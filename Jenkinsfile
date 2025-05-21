@@ -42,7 +42,7 @@ pipeline {
                expression { params.OPTIONS == 'Destroy' }
            }
            steps {
-              sh 'helm uninstall simple-web-chart'
+              sh 'helm uninstall simple-web-chart -n michael'
                }
             }
 
