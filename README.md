@@ -1,4 +1,4 @@
-# Simple-Web Helm Chart Jenkins Pipeline
+# Helm Chart Jenkins Pipeline
 
 ## Overview
 
@@ -19,7 +19,7 @@ The helm chart is comprised of a values.yaml and four manifest templates:
 - Deployment
 - Service
 - Ingress
-- Auto-scaler - A KEDA scaledObjbect costume resource
+- Auto-scaler - A KEDA scaledObject costume resource
 
 ### Autoscaler Triggers
 - CPU
