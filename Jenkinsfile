@@ -33,10 +33,18 @@ pipeline {
 
        stage('Connect to Cluster') {
            steps {
-               sh 'az login -i'
-               sh 'az aks get-credentials -n ${AKS_NAME} -g ${RESOURCE_GROUP}'
-               sh 'export KUBECONFIG=~/.kube/config'
-               sh 'kubelogin convert-kubeconfig -l msi'
+               echo "Checking if already connected to cluster..."
+               sh """
+                 if az aks get-credentials -n ${AKS_NAME} -g ${RESOURCE_GROUP} > /dev/null 2>&1; then
+                     echo "Already connected.
+                 else
+                     echo "Connecting..."
+                     az login -i
+                     az aks get-credentials -n ${AKS_NAME} -g ${RESOURCE_GROUP}
+                     export KUBECONFIG=~/.kube/config
+                     kubelogin convert-kubeconfig -l msi
+                 fi
+                 """
         }
        }
 
@@ -62,7 +70,7 @@ pipeline {
                expression { params.OPTIONS == 'Destroy' }
            }
            steps {
-              sh "Checking if Release exits..."
+              echo "Checking if Release exits..."
               sh """
                 if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
                    echo "Release found. Uninstalling..."
