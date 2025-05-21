@@ -18,14 +18,14 @@ To confirm deployment, visit: http://98.64.41.189/michael
 The helm chart is comprised of a values.yaml and four manifest templates:
 - Deployment
 - Service
-- Ingress
-- Auto-scaler - A KEDA scaledObject costume resource
+- Ingress- 
+- Auto-scaler - A KEDA scaledObject costum resource
 
 ### Autoscaler Triggers
-- CPU
-- Memory
-- Peak Hours Cron job
-- Off Peak Cron job
+- CPU Threshold
+- Memory Threshold
+- Peak-Hours Cron job (8:00 AM - 12:00 AM)
+- Off-Peak Cron job (To keep one replica always running)
 
 ## The Pipeline
 
@@ -33,17 +33,10 @@ The helm chart is comprised of a values.yaml and four manifest templates:
 
 1. Clean - Cleans the Jenkins workspace.
 2. Checkout - Clones the files from this repository.
-3. Connect to Cluster - Connects to the AKS cluster via az CLI and kubelogin.
+3. Connect to Cluster - Connects to the AKS cluster via "az CLI and kubelogin".
 4. Chart Deploy - Deploys the Chart with Helm Install. Skipped if the parameter "Destroy" is selected.
 5. Chart Destroy - Uninstall the Release with Helm Uninstall. Skipped if the parameter "Deploy" is selected.
 
 ### Idempotence
 To keep the pipeline idempotent, the "Connect to Cluster", "Chart Deploy" and "Chart Destroy" stages include checks to skip them in case of prior configuration.
-
-
-
-
-
-
-
 
