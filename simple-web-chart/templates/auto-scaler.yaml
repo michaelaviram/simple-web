@@ -7,6 +7,9 @@ spec:
     name: {{ .Values.deployment.name }}
   minReplicaCount: {{ .Values.autoscaler.minReplicaCount }}
   maxReplicaCount: {{ .Values.autoscaler.maxReplicaCount }}
+  fallback:
+    failureThreshold: {{ .Values.autoscaler.fallback.failureThreshold }}
+    replicas: {{ .Values.autoscaler.fallback.replicas }}
   triggers:
   - type: cpu
     metricType: {{ .Values.autoscaler.cpu.metricType }}
