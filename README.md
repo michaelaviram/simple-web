@@ -18,7 +18,7 @@ To confirm deployment, visit: http://98.64.41.189/michael
 The helm chart is comprised of a values.yaml and four manifest templates:
 - Deployment
 - Service
-- Ingress- 
+- Ingress
 - Auto-scaler - A KEDA scaledObject costum resource
 
 ### Autoscaler Triggers
