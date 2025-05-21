@@ -33,7 +33,7 @@ pipeline {
 
        stage('Connect to Cluster') {
            steps {
-               echo "Checking if already connected to cluster..."
+               echo "Checking if connected to cluster..."
                sh """
                  if kubelogin convert-kubeconfig -l msi > /dev/null 2>&1; then
                      echo "Already connected."
@@ -45,7 +45,7 @@ pipeline {
                      kubelogin convert-kubeconfig -l msi
                  fi
                  """
-        }
+            }
        }
 
        stage('Chart Deploy') {
@@ -74,7 +74,7 @@ pipeline {
               sh """
                 if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
                    echo "Release found. Uninstalling..."
-                   helm uninstall ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}
+                helm uninstall ${HELM_CHART} -n ${NAMESPACE}
                 else
                   echo "Release does not exists."
                 fi
