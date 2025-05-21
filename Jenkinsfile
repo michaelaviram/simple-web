@@ -3,6 +3,7 @@ pipeline {
     
     parameters {
         choice(name: 'OPTIONS', choices: ['Deploy', 'Destroy'], description: 'Choose whether to deploy or destroy Helm Release.')
+    }
 
     environment {
         AKS_NAME = 'devops-interview-aks'
