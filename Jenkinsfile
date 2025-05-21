@@ -36,7 +36,15 @@ pipeline {
                expression { params.OPTIONS == 'Deploy' }
            }
            steps {
-               sh 'helm install ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}'
+               sh "Checking if Release exits..."
+               sh """
+                 if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
+                    echo "Release found. Upgrading..."
+                 else
+                    echo "Release not found. Installing..."
+                 fi
+                 """
+               sh 'helm upgrade --install ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}'
                }
             }
 
@@ -45,8 +53,8 @@ pipeline {
                expression { params.OPTIONS == 'Destroy' }
            }
            steps {
+              sh "Checking if Release exits..."
               sh """
-                echo "Checking if Release exits..."
                 if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
                    echo "Release found. Uninstalling..."
                    helm uninstall ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}
