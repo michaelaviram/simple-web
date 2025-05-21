@@ -7,7 +7,7 @@ deployment:
   requestsMemory: "7Mi"
   requestsCPU: "1m"
   limitsMemory: "14Mi"
-  limitsCPU: "2m"
+  limitsCPU: "4m"
 
 service:
   name: "simple-web-service"
@@ -24,12 +24,16 @@ ingress:
 
 autoscaler:
   name: "simple-web-autoscaler"
-  minReplicaCount: 1
+  minReplicaCount: 0
   maxReplicaCount: 10
   cpu:
-    metricType: "Utilization"
-    value: "50"
+    metricType: "AverageValue"
+    value: "10Mi"
   memory:
-    metricType: "Utilization"
-    value: "50"
-
+    metricType: "AverageValue"
+    value: "2m"
+  cron:
+    timezone: "Israel"
+    start: 0 8 * * *
+    end: 0 12 * * *
+    desiredReplicas: "2"

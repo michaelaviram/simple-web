@@ -16,3 +16,9 @@ spec:
     metricType: {{ .Values.autoscaler.memory.metricType }}
     metadata:
       value: "{{ .Values.autoscaler.memory.value }}"
+  - type: cron
+    metadata:
+      timezone: {{ .Values.autoscaler.cron.timezone }}
+      start: {{ .Values.autoscaler.cron.start }}
+      end: {{ .Values.autoscaler.cron.end }}
+      desiredReplicas: "{{ .Values.autoscaler.cron.desiredReplicas }}"
