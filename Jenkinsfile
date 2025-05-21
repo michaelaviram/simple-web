@@ -1,9 +1,14 @@
 pipeline {
     agent any 
+    
+    environment {
+        AKS_NAME = 'devops-interview-aks'
+        RESOURCE_GROUP = 'devops-interview-rg'
 
     options {
         skipDefaultCheckout(true)
     }
+
     stages {
         stage('Clean') {
             steps {
@@ -21,13 +26,13 @@ pipeline {
        stage('Connect to Cluster') {
            steps {
                sh 'az login -i'
-               sh 'az aks get-credentials -n devops-interview-aks -g  devops-interview-rg'
+               sh 'az aks get-credentials -n ${AKS_NAME} -g ${RESOURCE_GROUP}'
                sh 'export KUBECONFIG=~/.kube/config'
                sh 'kubelogin convert-kubeconfig -l msi'
            }
        }
 
-       stage('Deploy Chart') {
+       stage('Chart Action') {
            steps {
                sh 'helm install simple-web-chart simple-web-chart/ -n michael'
            }
