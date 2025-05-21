@@ -59,7 +59,7 @@ pipeline {
                     echo "Release already exits."
                  else
                     echo "Release not found. Installing..."
-                    helm upgrade --install ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}
+                    helm install ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}
                  fi
                  """
                }
