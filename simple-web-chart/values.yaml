@@ -22,4 +22,14 @@ ingress:
   className: "nginx"
   port: 80
 
+autoscaler:
+  name: "simple-web-autoscaler"
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  cpu:
+    metricType: "Utilization"
+    value: "50"
+  memory:
+    metricType: "Utilization"
+    value: "50"
 

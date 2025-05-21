@@ -1,0 +1,18 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ .Values.autoscaler.name }}
+spec:
+  scaleTargetRef:
+    name: {{ .Values.deployment.name }}
+  minReplicaCount: {{ .Values.autoscaler.minReplicaCount }}
+  maxReplicaCount: {{ .Values.autoscaler.maxReplicaCount }}
+  triggers:
+  - type: cpu
+    metricType: {{ .Values.autoscaler.cpu.metricType }}
+    metadata:
+      value: "{{ .Values.autoscaler.cpu.value }}"
+  - type: memory
+    metricType: {{ .Values.autoscaler.memory.metricType }}
+    metadata:
+      value: "{{ .Values.autoscaler.memory.value }}"
