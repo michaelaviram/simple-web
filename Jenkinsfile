@@ -30,7 +30,7 @@ pipeline {
 
        stage('Chart Deploy') {
            when {
-               expression { params.OPTIONS == 'deploy' }
+               expression { params.OPTIONS == 'Deploy' }
            }
            steps {
                sh 'helm install simple-web-chart simple-web-chart/ -n michael'
@@ -39,7 +39,7 @@ pipeline {
 
        stage('Chart Destroy') {
            when {
-               expression { params.OPTIONS == 'destroy' }
+               expression { params.OPTIONS == 'Destroy' }
            }
            steps {
               sh 'helm uninstall simple-web-chart'
