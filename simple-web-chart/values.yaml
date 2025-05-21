@@ -27,7 +27,7 @@ autoscaler:
   minReplicaCount: 0
   maxReplicaCount: 10
   fallback:
-    failureThreshold: 1
+    failureThreshold: 3
     replicas: 1
   cpu:
     metricType: "AverageValue"
@@ -36,7 +36,16 @@ autoscaler:
     metricType: "AverageValue"
     value: "10Mi"
   cron:
-    timezone: "Israel"
-    start: 0 8 * * *
-    end: 0 12 * * *
-    desiredReplicas: "2"
+    peakHours:
+      name: "peakHours"
+      timezone: "Israel"
+      start: 0 8 * * *
+      end: 0 12 * * *
+      desiredReplicas: "3"
+    offPeak:
+      name: "offPeak"
+      timezone: "Israel"
+      start: * * * * *
+      end: * * * * *
+      desiredReplicas: "1"
+
