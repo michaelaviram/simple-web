@@ -73,7 +73,7 @@ pipeline {
               sh """
                 if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
                    echo "Release found. Uninstalling..."
-                helm uninstall ${HELM_CHART} -n ${NAMESPACE}
+                   helm uninstall ${HELM_CHART} -n ${NAMESPACE}
                 else
                   echo "Release does not exists."
                 fi
