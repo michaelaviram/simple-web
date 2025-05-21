@@ -45,7 +45,15 @@ pipeline {
                expression { params.OPTIONS == 'Destroy' }
            }
            steps {
-              sh 'helm uninstall ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}'
+              sh """
+                echo "Checking if Release exits..."
+                if helm status ${HELM_CHART} -n ${NAMESPACE} > /dev/null 2>&1; then
+                   echo "Release found. Uninstalling..."
+                   helm uninstall ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}
+                else
+                  echo "Release does not exists."
+                fi
+                """
                }
             }
        }
