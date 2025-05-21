@@ -17,6 +17,12 @@ pipeline {
                 checkout scm
             }
        }
+
+       stage('Deploy Chart') {
+           steps {
+               sh 'helm install simple-web-chart simple-web-chart/ -n michael'
+           }
+       }
     }
 }
 
