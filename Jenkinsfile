@@ -19,7 +19,7 @@ pipeline {
        }
 
        stage('Connect to Cluster') {
-           teps {
+           steps {
                sh 'az aks get-credentials -n devops-interview-aks -g  devops-interview-rg'
                sh 'export KUBECONFIG=~/.kube/config'
                sh 'kubelogin convert-kubeconfig -l msi'
