@@ -4,6 +4,10 @@ deployment:
   image: "acrinterview.azurecr.io/simple-web"
   tag: "latest"
   containerPort: 80
+  requestsMemory: "7Mi"
+  requestsCPU: "1m"
+  limitsMemory: "14Mi"
+  limitsCPU: "2m"
 
 service:
   name: "simple-web-service"

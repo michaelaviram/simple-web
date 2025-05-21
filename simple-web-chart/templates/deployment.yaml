@@ -17,6 +17,13 @@ spec:
       containers:
       - name: {{ .Values.deployment.name }}
         image: {{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+        resources:
+          requests:
+            memory: {{ .Values.deployment.requestsMemory }}
+            cpu: {{ .Values.deployment.requestsCPU }}
+          limits:
+            memory: {{ .Values.deployment.limitsMemory }}
+            cpu: {{ .Values.deployment.limitsCPU }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
 
