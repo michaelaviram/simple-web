@@ -28,18 +28,25 @@ pipeline {
             }
        }
 
-       stage('Chart Action') {
+       stage('Chart Deploy') {
+           when {
+               expression { params.OPTIONS == 'deploy' }
+           }
            steps {
-               script {
-               if (params.OPTIONS == 'deploy') {
-                    sh 'helm install simple-web-chart simple-web-chart/ -n michael'
-               } else if (params.OPTIONS == 'destroy') {
-                   sh 'helm uninstall simple-web-chart'
+               sh 'helm install simple-web-chart simple-web-chart/ -n michael'
                }
             }
+
+       stage('Chart Destroy') {
+           when {
+               expression { params.OPTIONS == 'destroy' }
            }
+           steps {
+              sh 'helm uninstall simple-web-chart'
+               }
+            }
+
 
        }
-    }
 }
 
