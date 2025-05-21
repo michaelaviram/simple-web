@@ -27,7 +27,7 @@ autoscaler:
   minReplicaCount: 0
   maxReplicaCount: 10
   fallback:
-    failureThreshold: 3
+    failureThreshold: 1
     replicas: 1
   cpu:
     metricType: "AverageValue"
