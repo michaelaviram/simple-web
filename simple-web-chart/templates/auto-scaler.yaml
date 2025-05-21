@@ -25,12 +25,12 @@ spec:
       timezone: {{ .Values.autoscaler.cron.peakHours.timezone }}
       start: {{ .Values.autoscaler.cron.peakHours.start }}
       end: {{ .Values.autoscaler.cron.peakHours.end }}
-      desiredReplicas: "{{ .Values.autoscaler.cron.desiredReplicas }}"
+      desiredReplicas: "{{ .Values.autoscaler.cron.peakHours.desiredReplicas }}"
   - type: cron
     metadata:
       name: {{ .Values.autoscaler.cron.offPeak.name }}
       timezone: {{ .Values.autoscaler.cron.offPeak.timezone }}
       start: {{ .Values.autoscaler.cron.offPeak.start }}
       end: {{ .Values.autoscaler.cron.offPeak.end }}
-      desiredReplicas: "{{ .Values.autoscaler.cron.desiredReplicas }}"
+      desiredReplicas: "{{ .Values.autoscaler.cron.offPeak.desiredReplicas }}"
 
