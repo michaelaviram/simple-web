@@ -10,8 +10,7 @@ pipeline {
         RESOURCE_GROUP = 'devops-interview-rg'
         NAMESPACE = 'michael'
         HELM_CHART = 'simple-web'
-        HELM_CHART_LOCATION = 'simple-web-chart/'
-    }
+        HELM_CHART_PATH = 'simple-web-chart/'
 
     options {
         skipDefaultCheckout(true)
