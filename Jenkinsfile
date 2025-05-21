@@ -31,6 +31,15 @@ pipeline {
             }
        }
 
+       stage('Connect to Cluster') {
+           steps {
+               sh 'az login -i'
+               sh 'az aks get-credentials -n ${AKS_NAME} -g ${RESOURCE_GROUP}'
+               sh 'export KUBECONFIG=~/.kube/config'
+               sh 'kubelogin convert-kubeconfig -l msi'
+        }
+       }
+
        stage('Chart Deploy') {
            when {
                expression { params.OPTIONS == 'Deploy' }
