@@ -28,10 +28,10 @@ autoscaler:
   maxReplicaCount: 10
   cpu:
     metricType: "AverageValue"
-    value: "10Mi"
+    value: "2m"
   memory:
     metricType: "AverageValue"
-    value: "2m"
+    value: "10Mi"
   cron:
     timezone: "Israel"
     start: 0 8 * * *
