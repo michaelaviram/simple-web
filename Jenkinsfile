@@ -24,9 +24,8 @@ pipeline {
             }
         }
 
-        stage('Fetch') {
+        stage('Checkout') {
             steps {
-                echo "Fetch Stage"
                 checkout scm
             }
        }

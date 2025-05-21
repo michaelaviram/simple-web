@@ -1,4 +1,4 @@
-# Simple-Web Helm Assignment
+# Simple-Web Helm Chart Jenkins Pipeline
 
 ## Overview
 
@@ -21,12 +21,18 @@ The helm chart is comprised of a values.yaml and four manifest templates:
 - Ingress
 - Auto-scaler - A KEDA scaledObjbect costume resource
 
+### Autoscaler Triggers
+- CPU
+- Memory
+- Peak Hours Cron job
+- Off Peak Cron job
+
 ## The Pipeline
 
 ### Stages:
 
 1. Clean - Cleans the Jenkins workspace.
-2. Fetch - Clones the files from this repository.
+2. Checkout - Clones the files from this repository.
 3. Connect to Cluster - Connects to the AKS cluster via az CLI and kubelogin.
 4. Chart Deploy - Deploys the Chart with Helm Install. Skipped if the parameter "Destroy" is selected.
 5. Chart Destroy - Uninstall the Release with Helm Uninstall. Skipped if the parameter "Deploy" is selected.
