@@ -35,7 +35,7 @@ pipeline {
            steps {
                echo "Checking if already connected to cluster..."
                sh """
-                 if az aks get-credentials -n ${AKS_NAME} -g ${RESOURCE_GROUP} > /dev/null 2>&1; then
+                 if kubelogin convert-kubeconfig -l msi > /dev/null 2>&1; then
                      echo "Already connected."
                  else
                      echo "Connecting..."
