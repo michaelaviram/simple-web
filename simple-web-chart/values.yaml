@@ -46,6 +46,6 @@ autoscaler:
       name: "offPeak"
       timezone: "Israel"
       start: 1 12 * * *
-      end: 0 7 * * *
+      end: 59 7 * * *
       desiredReplicas: "1"
 
