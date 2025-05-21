@@ -8,6 +8,9 @@ pipeline {
     environment {
         AKS_NAME = 'devops-interview-aks'
         RESOURCE_GROUP = 'devops-interview-rg'
+        NAMESPACE = 'michael'
+        HELM_CHART = 'simple-web'
+        HELM_CHART_LOCATION = 'simple-web-chart/'
     }
 
     options {
@@ -33,7 +36,7 @@ pipeline {
                expression { params.OPTIONS == 'Deploy' }
            }
            steps {
-               sh 'helm install simple-web-chart simple-web-chart/ -n michael'
+               sh 'helm install ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}'
                }
             }
 
@@ -42,11 +45,9 @@ pipeline {
                expression { params.OPTIONS == 'Destroy' }
            }
            steps {
-              sh 'helm uninstall simple-web-chart -n michael'
+              sh 'helm uninstall ${HELM_CHART} ${HELM_CHART_PATH} -n ${NAMESPACE}'
                }
             }
-
-
        }
 }
 
